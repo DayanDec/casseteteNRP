@@ -187,10 +187,6 @@ function startTimer() {
       messageDisplayed = true;
     }
   
-    if (timer === 120 && messageDisplayed) { // 2:00
-      showMessage();
-      messageDisplayed = false;
-    }
 
     if (timer <= 0) {
       clearInterval(timerInterval);
