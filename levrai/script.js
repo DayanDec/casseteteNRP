@@ -7,8 +7,13 @@ document.getElementById('background-audio').volume = 0.1;
 // Chargement des sons spécifiques pour les positions correctes
 const teteSound = new Audio('clik.mp3');
 teteSound.volume = 0.8;
+
 const jambeSound = new Audio('foleywoodaigu.mp3');
 jambeSound.volume = 0.7;
+
+const brasDroitSound = new Audio('lock3.mp3');
+brasDroitSound.volume = 0.9; // Volume du son du bras droit
+
 const rulesBtn = document.getElementById('rules-btn');
 const rulesModal = document.getElementById('rules-modal');
 const closeRules = document.getElementById('close-rules');
@@ -40,10 +45,11 @@ const solution = {
   'right-leg': 350,
 };
 
-// Suivi des sons déjà joués pour la tête et la jambe droite
+// Suivi des sons déjà joués pour les parties spécifiques
 const soundPlayed = {
   head: false,
   'right-leg': false,
+  'right-arm': false, // Bras droit ajouté
 };
 
 // Fonction pour déplacer une partie de la marionnette
@@ -67,6 +73,16 @@ function move(part, direction) {
       jambeSound.play();
       soundPlayed['right-leg'] = true;
     }
+
+    // Son pour le bras droit uniquement si le timer est inférieur à 1 minutes 40
+    if (part === 'right-arm' && Math.abs(positions[part] - solution[part]) === 0 && !soundPlayed['right-arm']) {
+      const remainingTime = timer; // Temps restant en secondes
+      if (remainingTime <= 100) { // Moins de 1 minutes 40
+        brasDroitSound.currentTime = 0;
+        brasDroitSound.play();
+        soundPlayed['right-arm'] = true;
+      }
+    }
   }
 }
 
@@ -89,7 +105,7 @@ function fadeOutAudio(audioElement, duration = 2000) {
 // Validation de la posture
 function validatePosture() {
   const correct = Object.keys(solution).every(
-    (part) => Math.abs(positions[part] - solution[part]) <= 10
+    (part) => Math.abs(positions[part] - solution[part]) <= 0
   );
 
   const messageBox = document.getElementById('message-box');
@@ -122,7 +138,7 @@ function validatePosture() {
   }
 }
 
-let timer = 10; // 6 minutes en secondes 360
+let timer = 420; // 7 minutes en secondes 420
 
 function loadTimer() {
   const savedTime = localStorage.getItem('timer');
