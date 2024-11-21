@@ -2,7 +2,7 @@ let errors = 0;
 let timerInterval; // Gère le timer globalement
 
 // Volume de l'audio de fond
-document.getElementById('background-audio').volume = 0.1;
+document.getElementById('background-audio').volume = 0.05;
 
 // Chargement des sons spécifiques pour les positions correctes
 const teteSound = new Audio('clik.mp3');
@@ -113,7 +113,7 @@ function validatePosture() {
   const backgroundAudio = document.getElementById('background-audio');
 
   if (correct) {
-    messageBox.textContent = "Bravo ! Vous avez réussi ! Le mot est AYATSURI (操り), qui signifie manipulation.";
+    messageBox.textContent = "Bravo ! Vous avez réussi ! Le mot clé est AYATSURI (操り), qui signifie manipulation.";
     messageBox.className = "success";
 
     // Animation lumineuse autour de la marionnette
