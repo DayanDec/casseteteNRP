@@ -21,6 +21,11 @@
     </audio>
   </div>
 
+  <!-- Ajout du son ostkushina.mp3 avec volume réduit et boucle activée -->
+  <audio id="background-music" autoplay loop>
+    <source src="ostkushina.mp3" type="audio/mp3">
+    Votre navigateur ne supporte pas l'audio HTML5.
+  </audio>
 
   <div class="container">
     <!-- Section des indices -->
@@ -31,7 +36,6 @@
       <p>3. ✨ Mon troisième est une addition des commandements qui parlent de village.</p>
       <p>4. ⚔️ Mon quatrième est un commandement qui parle de meurtre.</p>
     </aside>
-    
     
     <!-- Section principale -->
     <main class="coffre-section">
@@ -47,6 +51,7 @@
       </div>
     </main>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js">document.getElementById('background-music').volume = 0.2;
+  </script>
 </body>
 </html>

@@ -122,12 +122,12 @@ function validatePosture() {
   }
 }
 
-let timer = 10; // 8 minutes en secondes
+let timer = 10; // 6 minutes en secondes 360
 
 function loadTimer() {
   const savedTime = localStorage.getItem('timer');
   if (savedTime) {
-    timer = Math.max(0, parseInt(savedTime, 10) - 60);
+    timer = Math.max(0, parseInt(savedTime, 10) - 1);
   }
   saveTimer();
 }

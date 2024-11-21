@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     codeSection.classList.remove('hidden');
     codeInput.focus();
   });
+  document.getElementById('background-music').volume = 0.2;
 
   // Étape 2 : Validation du code
   validateBtn.addEventListener('click', () => {
