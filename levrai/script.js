@@ -3,6 +3,16 @@ let timerInterval; // Gère le timer globalement
 
 // Volume de l'audio de fond
 document.getElementById('background-audio').volume = 0.05;
+// Volume de l'audio de fond
+const backgroundAudio = document.getElementById('background-audio');
+
+// Contrôle du volume (slider)
+const volumeSlider = document.getElementById('volume-slider');
+
+// Lier le volume du slider à l'audio
+volumeSlider.addEventListener('input', (event) => {
+  backgroundAudio.volume = event.target.value;
+});
 
 // Chargement des sons spécifiques pour les positions correctes
 const teteSound = new Audio('clik.mp3');
@@ -52,13 +62,13 @@ const soundPlayed = {
   'right-arm': false, // Bras droit ajouté
 };
 function showMessage() {
-  const messageBox = document.getElementById('message-box');
-  messageBox.textContent = "Parfois, un petit rafraîchissement peut aider à retrouver la symphonie de la marionnette.";
-  messageBox.classList.remove('hidden');
+  const messageBox = document.getElementById('refresh-message'); // Utilisation de l'ID correct
+  messageBox.classList.remove('hidden'); // Affichage du message
   setTimeout(() => {
-    messageBox.classList.add('hidden');
-  }, 20000); // Cacher le message après 20 secondes
+    messageBox.classList.add('hidden'); // Masquage du message après 20 secondes
+  }, 20000);
 }
+
 
 // Fonction pour déplacer une partie de la marionnette
 function move(part, direction) {
@@ -147,6 +157,7 @@ function validatePosture() {
 }
 
 let timer = 420; // 7 minutes en secondes 420
+let messageDisplayed = false;
 
 function loadTimer() {
   const savedTime = localStorage.getItem('timer');
@@ -159,11 +170,9 @@ function loadTimer() {
 function saveTimer() {
   localStorage.setItem('timer', timer.toString());
 }
-let messageDisplayed = false;
 
 function startTimer() {
   const timerDisplay = document.getElementById('timer-display');
-  const refreshMessage = document.getElementById('refresh-message'); // Récupère l'élément du message
 
   timerInterval = setInterval(() => { // Utilisation de timerInterval
     const minutes = Math.floor(timer / 60);
@@ -172,27 +181,20 @@ function startTimer() {
     timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     saveTimer();
 
+    // Affichage des messages de 4:30 et 2:00
+    if (timer === 270 && !messageDisplayed) { // 4:30
+      showMessage();
+      messageDisplayed = true;
+    }
+  
+    if (timer === 120 && messageDisplayed) { // 2:00
+      showMessage();
+      messageDisplayed = false;
+    }
+
     if (timer <= 0) {
       clearInterval(timerInterval);
       localStorage.removeItem('timer');
-
-      // Afficher le message à 4:30 et le réafficher à 2:00
-      if (timer === 270 && !messageDisplayed) { // 4 minutes 30 secondes
-        refreshMessage.classList.remove('hidden'); // Afficher le message
-        setTimeout(() => {
-          refreshMessage.classList.add('hidden'); // Cacher le message après 20 secondes
-        }, 20000);
-        messageDisplayed = true;
-      }
-  
-      if (timer === 120 && messageDisplayed) { // 2 minutes
-        refreshMessage.classList.remove('hidden'); // Réafficher le message
-        setTimeout(() => {
-          refreshMessage.classList.add('hidden'); // Cacher le message après 20 secondes
-        }, 20000);
-        messageDisplayed = false;
-      }
-
       // Afficher le message d'agitation
       document.body.innerHTML = '<div style="color: Black; font-size: 1.8em; text-align: center;">La marionnette s’agite violemment...</div>';
       
@@ -217,7 +219,7 @@ function startTimer() {
       setTimeout(() => {
         window.location.href = 'gameover.html';
       }, 3500); // Délai ajusté pour inclure l'animation
-    }        
+    }
 
     timer--;
   }, 1000);
