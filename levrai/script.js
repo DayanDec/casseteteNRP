@@ -51,6 +51,14 @@ const soundPlayed = {
   'right-leg': false,
   'right-arm': false, // Bras droit ajouté
 };
+function showMessage() {
+  const messageBox = document.getElementById('message-box');
+  messageBox.textContent = "Parfois, un petit rafraîchissement peut aider à retrouver la symphonie de la marionnette.";
+  messageBox.classList.remove('hidden');
+  setTimeout(() => {
+    messageBox.classList.add('hidden');
+  }, 20000); // Cacher le message après 20 secondes
+}
 
 // Fonction pour déplacer une partie de la marionnette
 function move(part, direction) {
@@ -151,9 +159,11 @@ function loadTimer() {
 function saveTimer() {
   localStorage.setItem('timer', timer.toString());
 }
+let messageDisplayed = false;
 
 function startTimer() {
   const timerDisplay = document.getElementById('timer-display');
+  const refreshMessage = document.getElementById('refresh-message'); // Récupère l'élément du message
 
   timerInterval = setInterval(() => { // Utilisation de timerInterval
     const minutes = Math.floor(timer / 60);
@@ -165,7 +175,24 @@ function startTimer() {
     if (timer <= 0) {
       clearInterval(timerInterval);
       localStorage.removeItem('timer');
-      
+
+      // Afficher le message à 4:30 et le réafficher à 2:00
+      if (timer === 270 && !messageDisplayed) { // 4 minutes 30 secondes
+        refreshMessage.classList.remove('hidden'); // Afficher le message
+        setTimeout(() => {
+          refreshMessage.classList.add('hidden'); // Cacher le message après 20 secondes
+        }, 20000);
+        messageDisplayed = true;
+      }
+  
+      if (timer === 120 && messageDisplayed) { // 2 minutes
+        refreshMessage.classList.remove('hidden'); // Réafficher le message
+        setTimeout(() => {
+          refreshMessage.classList.add('hidden'); // Cacher le message après 20 secondes
+        }, 20000);
+        messageDisplayed = false;
+      }
+
       // Afficher le message d'agitation
       document.body.innerHTML = '<div style="color: Black; font-size: 1.8em; text-align: center;">La marionnette s’agite violemment...</div>';
       
