@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Casse-Tête de Kin Kugutsu</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Le Casse-Tête de Kin Kugutsu</h1>
+  </header>
+  <!-- Nouvelle animation spectaculaire -->
+  <div class="transition-overlay hidden" id="transition-overlay">
+    <div class="flash"></div>
+    <canvas id="particle-canvas"></canvas>
+    <h1 class="transition-text">Bienvenue dans le véritable défi</h1>
+    <audio id="transition-sound" autoplay>
+      <source src="kabuto.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+
+  <div class="container">
+    <!-- Section des indices -->
+    <aside class="enigmes">
+      <h2>Indices :</h2>
+      <p>1. 🧩 Mon premier est le commandement qui interdit l'intrusion </p>
+      <p>2. 🛡️ Mon second est le nombre de fois que "pairs" est mentionné dans les commandements.</p>
+      <p>3. ✨ Mon troisième est une addition des commandements qui parlent de village.</p>
+      <p>4. ⚔️ Mon quatrième est un commandement qui parle de meurtre.</p>
+    </aside>
+    
+    
+    <!-- Section principale -->
+    <main class="coffre-section">
+      <div class="coffre">
+        <img src="coffrefermer.png" alt="Coffre fermé" id="coffre-img">
+        <div class="code-section hidden">
+          <input type="text" id="code-input" maxlength="4" placeholder="Entrez le code">
+          <button id="validate-btn">Valider</button>
+        </div>
+      </div>
+      <div id="message-box" class="hidden">
+        <p id="message"></p>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

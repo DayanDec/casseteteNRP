@@ -1,0 +1,9 @@
+Code : 7384
+
+ ---
+
+Tête : 2 × ↑
+Bras gauche : 2 × ↑
+Bras droit : 3 × ↑
+Jambe gauche : 1 × ↓
+Jambe droite : 2 × ↑

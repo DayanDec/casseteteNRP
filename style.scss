@@ -1,0 +1,219 @@
+/* Réinitialisation */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('fond-suna.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.page-header {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.8); /* Fond noir semi-transparent */
+  border-bottom: 2px solid #ffcc33;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.page-header h1 {
+  font-size: 2.5em;
+  color: #ffcc33;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  letter-spacing: 2px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 50px;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 120px; /* Pour compenser la position fixe du header */
+  align-items: flex-start;
+}
+
+.enigmes {
+  width: 400px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9); /* Fond clair légèrement opaque */
+  border: 2px solid #444; /* Bordure subtile */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Légère ombre */
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.enigmes h2 {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  color: #444;
+  text-align: center;
+}
+
+.enigmes p {
+  margin-bottom: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+
+
+/* Section principale */
+.coffre-section {
+  flex: 1;
+  text-align: center;
+  margin-top: 50px; /* Distance supplémentaire du titre */
+}
+
+.coffre img {
+  width: 400px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.code-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+#code-input {
+  width: 250px;
+  padding: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  border: 2px solid #ff9800;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+#validate-btn {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#validate-btn:hover {
+  background: #e67e22;
+}
+
+/* Message Box */
+#message-box {
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+}
+
+/* Nouvelle animation spectaculaire */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.transition-overlay.hidden {
+  display: none;
+}
+
+.flash {
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 0) 70%);
+  animation: intenseFlash 1.5s ease-out;
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+@keyframes intenseFlash {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.transition-text {
+  position: absolute;
+  font-size: 3em;
+  color: gold;
+  text-shadow: 0 0 15px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 204, 51, 1);
+  animation: textAppear 2s ease-out;
+}
+
+@keyframes textAppear {
+  0% {
+    transform: rotateX(90deg) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateX(0deg) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+}

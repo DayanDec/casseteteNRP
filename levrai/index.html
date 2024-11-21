@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Défi de la Marionnette</title>
+  <link rel="stylesheet" href="transi.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="start-screen">
+    <div id="rules-block">
+      <h1>Défi de la Marionnette</h1>
+      <div id="image-container">
+        <img src="marionette.webp" alt="Marionnette" id="marionnette-image">
+      </div>
+      <div id="rules-container">
+        <h2>Règles du jeu :</h2>
+        <ul>
+          <li>- Utilisez les boutons pour ajuster les positions des membres de la marionnette.</li>
+          <li>- Rafraîchir la page réinitialise le jeu, mais vous perdrez <strong>1 seconde</strong> (cela a son importance).</li>
+          <li>- Appuyez sur le <strong>corps</strong> de la marionnette pour valider votre solution. (Vous pouvez valider/tester AUTANT de fois que vous le souhaitez).</li>
+          <li>- Les règles seront disponibles à tout moment pendant le jeu.</li>
+          <li>- <strong>Attention :</strong> Une seule combinaison exacte permet de réparer la marionnette. De plus, à la fin du timer (7 minutes), la marionnette explosera.</li>
+          <li>- <strong>Assurez-vous d'avoir du son</strong>. Lorsque le casse-tête débutera, il y aura une musique de fond. Si vous ne l'entendez pas, vous pouvez normalement l'autoriser en cliquant à gauche du lien. Si vous ne l'avez toujours pas, ne touchez pas à la marionnette.</li>          
+        </ul>
+      </div>
+    </div>
+    <button id="start-btn">Commencer le casse-tête</button>
+  </div>
+
+  <script>
+    // Redirige vers game.html au clic sur "Commencer"
+    document.getElementById('start-btn').addEventListener('click', () => {
+      window.location.href = 'game.html';
+    });
+  </script>
+</body>
+</html>

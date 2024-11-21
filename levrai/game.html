@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Défi de la Marionnette</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="timer-container">
+    <h2>Temps restant : <span id="timer-display">08:00</span></h2>
+  </div>  
+  
+      <!-- Bouton pour les règles -->
+      <button id="rules-btn">Revoir les règles</button>
+      <div id="rules-modal" class="hidden">
+        <h2>Règles du jeu :</h2>
+        <ul>
+            <li>- Utilisez les boutons pour ajuster les positions des membres de la marionnette.</li>
+            <li>- Rafraîchir la page réinitialise le jeu, mais vous perdrez <strong>1 seconde</strong> (cela a son importance).</li>
+            <li>- Appuyez sur le <strong>corps</strong> de la marionnette pour valider votre solution. (Vous pouvez valider/tester AUTANT de fois que vous le souhaitez).</li>
+            <li>- Les règles seront disponibles à tout moment pendant le jeu.</li>
+            <li>- <strong>Attention :</strong> Une seule combinaison exacte permet de réparer la marionnette. De plus, à la fin du timer, la marionnette explosera.</li>
+            <li>- <strong>Assurez-vous d'avoir du son</strong>. Lorsque le casse-tête débutera, il y aura une musique de fond. Si vous ne l'entendez pas, vous pouvez normalement l'autoriser en cliquant à gauche du lien. Si vous ne l'avez toujours pas, ne touchez pas à la marionnette.</li>          
+        </ul>
+        <button id="close-rules">Fermer</button>
+      </div>
+  
+  <div class="main-container">
+    <h1>Répare ma Marionnette</h1>
+    <p>Ma marionnette est en miettes, tous ses fils sont complètement en vrac ! <br>
+      Si vous voulez la réparer, une seule combinaison exacte permettra de la faire bouger à nouveau.<br>
+      Mais êtes-vous vraiment capable de trouver la solution ? Il y a tellement de possibilités...
+    </p>
+  
+    <div class="content">
+      <!-- Marionnette -->
+      <div class="marionnette-container">
+        <div class="marionnette">
+          <div class="part" id="head">Tête</div>
+          <div class="limb" id="left-arm">Bras G</div>
+          <div class="limb" id="right-arm">Bras D</div>
+          <div id="torso" class="part">Corps</div>
+          <div class="limb" id="left-leg">Jambe G</div>
+          <div class="limb" id="right-leg">Jambe D</div>
+        </div>
+      </div>
+
+      <!-- Contrôles -->
+      <div class="controls">
+        <div class="control-group">
+          <h3>Tête</h3>
+          <button onclick="move('head', 'up')">↑</button>
+          <button onclick="move('head', 'down')">↓</button>
+        </div>
+        <div class="control-group">
+          <h3>Bras</h3>
+          <button onclick="move('left-arm', 'up')">↑ (G)</button>
+          <button onclick="move('left-arm', 'down')">↓ (G)</button>
+          <button onclick="move('right-arm', 'up')">↑ (D)</button>
+          <button onclick="move('right-arm', 'down')">↓ (D)</button>
+        </div>
+        <div class="control-group">
+          <h3>Jambes</h3>
+          <button onclick="move('left-leg', 'up')">↑ (G)</button>
+          <button onclick="move('left-leg', 'down')">↓ (G)</button>
+          <button onclick="move('right-leg', 'up')">↑ (D)</button>
+          <button onclick="move('right-leg', 'down')">↓ (D)</button>
+        </div>
+      </div>
+    </div>
+    <div id="message-box" class="hidden">
+      <p id="message"></p>
+    </div>
+    
+  </div>
+  <audio id="background-audio" autoplay loop>
+    <source src="kabuto.mp3" type="audio/mp3">
+    Votre navigateur ne supporte pas l'audio HTML5.
+  </audio>
+  
+  <script src="script.js"></script>
+</body>
+</html>
