@@ -122,12 +122,12 @@ function validatePosture() {
   }
 }
 
-let timer = 420; // 8 minutes en secondes
+let timer = 10; // 8 minutes en secondes
 
 function loadTimer() {
   const savedTime = localStorage.getItem('timer');
   if (savedTime) {
-    timer = Math.max(0, parseInt(savedTime, 10) - 1);
+    timer = Math.max(0, parseInt(savedTime, 10) - 60);
   }
   saveTimer();
 }
@@ -149,8 +149,32 @@ function startTimer() {
     if (timer <= 0) {
       clearInterval(timerInterval);
       localStorage.removeItem('timer');
-      document.body.innerHTML = '<div class="explosion">BOOM ! La marionnette a explosé !</div>';
-    }
+      
+      // Afficher le message d'agitation
+      document.body.innerHTML = '<div style="color: Black; font-size: 1.8em; text-align: center;">La marionnette s’agite violemment...</div>';
+      
+      // Ajouter un fond noir avec transition
+      const fadeDiv = document.createElement('div');
+      fadeDiv.style.position = 'fixed';
+      fadeDiv.style.top = 0;
+      fadeDiv.style.left = 0;
+      fadeDiv.style.width = '100%';
+      fadeDiv.style.height = '100%';
+      fadeDiv.style.backgroundColor = 'black';
+      fadeDiv.style.opacity = '0';
+      fadeDiv.style.transition = 'opacity 1s ease-in-out';
+      document.body.appendChild(fadeDiv);
+    
+      // Déclencher le fade-out après un court délai
+      setTimeout(() => {
+        fadeDiv.style.opacity = '1';
+      }, 1000);
+    
+      // Rediriger après le fade-out
+      setTimeout(() => {
+        window.location.href = 'gameover.html';
+      }, 3500); // Délai ajusté pour inclure l'animation
+    }        
 
     timer--;
   }, 1000);
