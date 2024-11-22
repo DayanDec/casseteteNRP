@@ -108,10 +108,10 @@ function move(part, direction) {
       soundPlayed['right-leg'] = true;
     }
 
-    // Son pour le bras droit uniquement si le timer est inférieur à 1 minutes 40
+    // Son pour le bras droit uniquement si le timer est inférieur à 1 minutes 10
     if (part === 'right-arm' && Math.abs(positions[part] - solution[part]) === 0 && !soundPlayed['right-arm']) {
       const remainingTime = timer; // Temps restant en secondes
-      if (remainingTime <= 100) { // Moins de 1 minutes 40
+      if (remainingTime <= 70) { // Moins de 1 minutes 10
         brasDroitSound.currentTime = 0;
         brasDroitSound.play();
         soundPlayed['right-arm'] = true;
