@@ -69,6 +69,22 @@ function showMessage() {
   }, 20000);
 }
 
+function showMessage1() {
+  const messageBox = document.getElementById('refresh-message2'); // Utilisation de l'ID correct
+  messageBox.classList.remove('hidden'); // Affichage du message
+  setTimeout(() => {
+    messageBox.classList.add('hidden'); // Masquage du message après 20 secondes
+  }, 20000);
+}
+
+function showMessage2() {
+  const messageBox = document.getElementById('refresh-message3'); // Utilisation de l'ID correct
+  messageBox.classList.remove('hidden'); // Affichage du message
+  setTimeout(() => {
+    messageBox.classList.add('hidden'); // Masquage du message après 20 secondes
+  }, 20000);
+}
+
 
 // Fonction pour déplacer une partie de la marionnette
 function move(part, direction) {
@@ -158,6 +174,9 @@ function validatePosture() {
 
 let timer = 420; // 7 minutes en secondes 420
 let messageDisplayed = false;
+let messageDisplayed2 = false;
+let messageDisplayed3 = false;
+
 
 function loadTimer() {
   const savedTime = localStorage.getItem('timer');
@@ -185,6 +204,16 @@ function startTimer() {
     if (timer === 270 && !messageDisplayed) { // 4:30
       showMessage();
       messageDisplayed = true;
+    }
+
+    if (timer === 380 && !messageDisplayed2) { // 4:30
+      showMessage1();
+      messageDisplayed2 = true;
+    }
+
+    if (timer === 60 && !messageDisplayed3) { // 4:30
+      showMessage2();
+      messageDisplayed3 = true;
     }
   
 
