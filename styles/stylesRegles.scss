@@ -30,8 +30,17 @@ body {
   }
   
   #image-container {
-    width: 100%;
+    width: auto;
+    
     margin: 15px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  #image-container2 {
+    width: auto;
+    margin: 15px 0;
+    margin-right: 100px;
     display: flex;
     justify-content: center;
   }
@@ -42,6 +51,15 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
+
+  #marionnette-image2 {
+    max-height: 820px; /* Limite la hauteur */
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+
   
   #rules-container {
     text-align: left;
