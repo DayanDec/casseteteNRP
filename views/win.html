@@ -151,7 +151,7 @@
                 <div class="electric-line" id="line5"></div>
             </div>
         </div>
-        <div id="ayatsuri">AYATSURI (操り)</div>
+        <div id="ayatsuri">AYATSURI 操り</div>
     </div>
 
     <div id="text-container">
@@ -171,7 +171,8 @@
             const raitoSound = document.getElementById('raito-sound');
             const disintegrationSound = document.getElementById('disintegration-sound');
             const ayatsuri = document.getElementById('ayatsuri');
-
+            disintegrationSound.volume = 0.3;
+            raitoSound.volume = 0.5
             const lines = [
                 document.getElementById('line1'),
                 document.getElementById('line2'),
