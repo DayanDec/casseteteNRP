@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinobi Game - Bokuton Serpent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        /* Réinitialisation */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('../assets/images/fond-suna.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        .animation-container {
+            position: relative;
+            width: 700px;
+            height: 500px;
+            border: 3px solid #ffcc33;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 204, 51, 0.6);
+            background: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+
+        .serpent-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #serpent {
+            width: 320px;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            filter: drop-shadow(0 0 10px #ffcc33);
+        }
+
+        #electric-effect {
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .electric-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.8), rgba(0, 255, 255, 0.2), transparent);
+            animation: electricPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes electricPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        .electric-line {
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 255, 255, 0), rgba(0, 255, 255, 1), rgba(0, 255, 255, 0));
+            transform-origin: top;
+        }
+
+        .disintegrate {
+            animation: disintegrateEffect 2s ease-in forwards;
+        }
+
+        @keyframes disintegrateEffect {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        #text-container {
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1.5;
+            color: white;
+            border: 3px solid #ffcc33;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 204, 51, 0.6);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #ayatsuri {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #ffcc33;
+            text-shadow: 0 0 20px #ffcc33;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="animation-container">
+        <div class="serpent-wrapper">
+            <img id="serpent" src="../assets/images/serpentbokuton.webp" alt="Serpent of Bokuton">
+            <div id="electric-effect">
+                <div class="electric-glow"></div>
+                <div class="electric-line" id="line1"></div>
+                <div class="electric-line" id="line2"></div>
+                <div class="electric-line" id="line3"></div>
+                <div class="electric-line" id="line4"></div>
+                <div class="electric-line" id="line5"></div>
+            </div>
+        </div>
+        <div id="ayatsuri">AYATSURI (操り)</div>
+    </div>
+
+    <div id="text-container">
+        <p><strong>Au moment décisif</strong>, le mécanisme de la <strong>marionnette</strong> s'activa, libérant une <strong>petite déflagration de Raiton</strong>. <br>
+        Le <strong>serpent de Bokuton</strong>, créé par Kensai, se <strong>désintégra instantanément</strong>.</p><br>
+        <p>Kin avait été averti par son frère : l'infusion de <strong>Raiton</strong> sur le <strong>Bokuton</strong> annule ses propriétés explosives. <br>
+        La <strong>marionnette</strong> resta donc intacte, révélant le mot-clé de l'énigme.</p>
+    </div>
+
+    <audio id="raito-sound" src="../assets/audio/eletric.mp3"></audio>
+    <audio id="disintegration-sound" src="../assets/audio/bakutonkc.mp3"></audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const serpent = document.getElementById('serpent');
+            const electricEffect = document.getElementById('electric-effect');
+            const raitoSound = document.getElementById('raito-sound');
+            const disintegrationSound = document.getElementById('disintegration-sound');
+            const ayatsuri = document.getElementById('ayatsuri');
+
+            const lines = [
+                document.getElementById('line1'),
+                document.getElementById('line2'),
+                document.getElementById('line3'),
+                document.getElementById('line4'),
+                document.getElementById('line5')
+            ];
+
+            // Initial positions and animations for lines
+            lines.forEach((line, index) => {
+                gsap.set(line, {
+                    height: "0%",
+                    opacity: 0,
+                    rotation: Math.random() * 360,
+                    left: `${Math.random() * 300}px`,
+                    top: `${Math.random() * 300}px`
+                });
+
+                gsap.to(line, {
+                    height: "100%",
+                    opacity: 1,
+                    duration: 0.5,
+                    delay: index * 0.2,
+                    yoyo: true,
+                    repeat: 4
+                });
+            });
+
+            // Show serpent and electric effect after delay
+            gsap.to(serpent, { opacity: 1, duration: 1, delay: 2, onComplete: () => {
+                gsap.to(electricEffect, { opacity: 1, duration: 0.5 });
+                raitoSound.play();
+                gsap.to(".electric-glow", {
+                    scale: 1.5,
+                    duration: 0.5,
+                    repeat: 4,
+                    yoyo: true
+                });
+            }});
+
+            // Disintegrate effect and reveal AYATSURI
+            setTimeout(() => {
+                gsap.to(electricEffect, { opacity: 0, duration: 1 });
+                gsap.to(serpent, {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 1.5,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        gsap.to(ayatsuri, { opacity: 1, duration: 1 });
+                    }
+                });
+                disintegrationSound.play();
+            }, 6000);
+        });
+    </script>
+</body>
+</html>

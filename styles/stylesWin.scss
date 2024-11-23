@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #0d0d0d, #1c1c3b);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.animation-container {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    border: 3px solid #00ffff;
+    border-radius: 15px;
+    background: radial-gradient(circle, #1e1e2f, #0d0d0d);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+}
+
+.serpent-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#serpent {
+    width: 300px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 2s ease-in-out;
+    filter: drop-shadow(0 0 10px #ff4500);
+}
+
+#electric-effect {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    display: none;
+    border-radius: 50%;
+    animation: electricPulse 4s ease-in-out infinite;
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 30px 15px rgba(0, 255, 255, 0.7);
+    filter: blur(5px);
+}
+
+@keyframes electricPulse {
+    0%, 100% {
+        box-shadow: 0 0 30px 15px rgba(0, 255, 255, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 60px 30px rgba(0, 255, 255, 1);
+    }
+}
+
+#description {
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-align: justify;
+    max-width: 600px;
+    animation: fadeIn 2s ease-in 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

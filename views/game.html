@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Défi de la Marionnette</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles/stylesGame.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -90,12 +90,14 @@
     
   </div>
   <audio id="background-audio" autoplay loop>
-    <source src="kabuto.mp3" type="audio/mp3">
+    <source src="../assets/audio/kabuto.mp3" type="audio/mp3">
     Votre navigateur ne supporte pas l'audio HTML5.
   </audio>
   <div class="volume-control">
+    <label for="volume-slider">Volume</label>
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.05">
   </div>
-  <script src="script.js"></script>
+  
+  <script src="../script/scriptGame.js"></script>
 </body>
 </html>

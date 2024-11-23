@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       transitionOverlay.classList.remove('hidden'); // Affiche l'animation
 
       setTimeout(() => {
-        window.location.href = 'levrai/index.html'; // Redirige vers la nouvelle page dans le dossier `levrai`
+        window.location.href = 'views/regles.html'; // Redirige vers la nouvelle page dans le dossier `levrai`
       }, 3000); // Redirection après 3 secondes
     } else {
       message.textContent = 'Code incorrect. Réessayez !';
@@ -37,3 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('torso').addEventListener('click', () => {
   validatePosture();
 });
+

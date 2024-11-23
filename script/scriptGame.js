@@ -5,23 +5,34 @@ let timerInterval; // Gère le timer globalement
 document.getElementById('background-audio').volume = 0.05;
 // Volume de l'audio de fond
 const backgroundAudio = document.getElementById('background-audio');
-
 // Contrôle du volume (slider)
 const volumeSlider = document.getElementById('volume-slider');
-
-// Lier le volume du slider à l'audio
 volumeSlider.addEventListener('input', (event) => {
   backgroundAudio.volume = event.target.value;
 });
 
+window.addEventListener('DOMContentLoaded', () => {
+  const savedVolume = localStorage.getItem('volume');
+  if (savedVolume !== null) {
+    backgroundAudio.volume = savedVolume; // Appliquer le volume sauvegardé
+    volumeSlider.value = savedVolume;    // Mettre à jour le slider
+  }
+});
+// Sauvegarder le volume dans le localStorage lors du changement
+volumeSlider.addEventListener('input', (event) => {
+  const newVolume = event.target.value;
+  backgroundAudio.volume = newVolume;
+  localStorage.setItem('volume', newVolume); // Enregistrer le nouveau volume
+});
+
 // Chargement des sons spécifiques pour les positions correctes
-const teteSound = new Audio('clik.mp3');
+const teteSound = new Audio('../assets/audio/clik.mp3');
 teteSound.volume = 0.8;
 
-const jambeSound = new Audio('foleywoodaigu.mp3');
+const jambeSound = new Audio('../assets/audio/foleywoodaigu.mp3');
 jambeSound.volume = 0.7;
 
-const brasDroitSound = new Audio('lock3.mp3');
+const brasDroitSound = new Audio('../assets/audio/lock3.mp3');
 brasDroitSound.volume = 0.9; // Volume du son du bras droit
 
 const rulesBtn = document.getElementById('rules-btn');
@@ -159,6 +170,34 @@ function validatePosture() {
     // **Arrête le timer global**
     clearInterval(timerInterval);
     localStorage.removeItem('timer');
+    // Rediriger après le fade-out
+    setTimeout(() => {
+      document.body.innerHTML = '<div style="color: Black; font-size: 1.8em; text-align: center;">La marionnette s’agite violemment...</div>';
+    
+      // Ajouter un fond noir avec transition
+      const fadeDiv = document.createElement('div');
+      fadeDiv.style.position = 'fixed';
+      fadeDiv.style.top = 0;
+      fadeDiv.style.left = 0;
+      fadeDiv.style.width = '100%';
+      fadeDiv.style.height = '100%';
+      fadeDiv.style.backgroundColor = 'black';
+      fadeDiv.style.opacity = '0';
+      fadeDiv.style.transition = 'opacity 1s ease-in-out';
+      document.body.appendChild(fadeDiv);
+    
+      // Déclencher le fade-out après un court délai
+      setTimeout(() => {
+        fadeDiv.style.opacity = '1';
+      }, 1000);
+    }, 2000); // Délai ajusté pour inclure l'animation
+
+  
+    // Rediriger après le fade-out
+    setTimeout(() => {
+      window.location.href = 'win.html';
+    }, 4500); // Délai ajusté pour inclure l'animation
+    
   } else {
     errors++;
     messageBox.textContent = "Posture incorrecte. Essayez encore.";
@@ -281,3 +320,4 @@ window.addEventListener('click', (event) => {
     rulesModal.classList.add('hidden');
   }
 });
+

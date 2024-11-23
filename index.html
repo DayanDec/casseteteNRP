@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Le Casse-Tête de Kin Kugutsu</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,14 +16,11 @@
     <div class="flash"></div>
     <canvas id="particle-canvas"></canvas>
     <h1 class="transition-text">Bienvenue dans le véritable défi</h1>
-    <audio id="transition-sound" autoplay>
-      <source src="kabuto.mp3" type="audio/mp3">
-    </audio>
   </div>
 
   <!-- Ajout du son ostkushina.mp3 avec volume réduit et boucle activée -->
   <audio id="background-music" autoplay loop>
-    <source src="ostkushina.mp3" type="audio/mp3">
+    <source src="assets/audio/ostkushina.mp3" type="audio/mp3">
     Votre navigateur ne supporte pas l'audio HTML5.
   </audio>
 
@@ -40,7 +37,7 @@
     <!-- Section principale -->
     <main class="coffre-section">
       <div class="coffre">
-        <img src="coffrefermer.png" alt="Coffre fermé" id="coffre-img">
+        <img src="assets/images/coffrefermer.png" alt="Coffre fermé" id="coffre-img">
         <div class="code-section hidden">
           <input type="text" id="code-input" maxlength="4" placeholder="Entrez le code">
           <button id="validate-btn">Valider</button>
@@ -51,6 +48,6 @@
       </div>
     </main>
   </div>
-  <script src="script.js"></script>
+  <script src="script/script.js"></script>
 </body>
 </html>
